@@ -1,16 +1,19 @@
 import React from 'react';
 
-import { Hero2, About, Footer ,Services , TopSalon ,UnequalSizeGallery } from '../index.js';
+import { Hero ,Hero2, Footer ,Services , TopSalon ,UnequalSizeGallery ,
+  CategorySection, GetInTouch , ServiceMenu, SalonTypes, NewToFresh, FAQSection } from '../index.js';
 
 const Home = () => {
   return (
     <>
-      <Hero2 />
-      <About />
-      <Services />
-      <TopSalon />
+      <Hero />
+      <ServiceMenu />
+      <NewToFresh />
+      <CategorySection />
       <UnequalSizeGallery />
-      <Footer />
+      <FAQSection />
+      {/* <GetInTouch /> */}
+   
     </>
   );
 };

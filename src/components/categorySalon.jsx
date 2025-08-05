@@ -1,20 +1,23 @@
 import React from 'react';
+import photo1 from '../assets/pictureGallery/photo1.jpg';
+import photo2 from '../assets/pictureGallery/photo2.jpg';
+import photo3 from '../assets/pictureGallery/photo3.jpg';
 
 const barbers = [
   {
     name: "Ravi",
     specialty: "Beard Expert",
-    image: "https://i.imgur.com/XYZ123.png",
+    image: photo1,
   },
   {
     name: "Amit",
     specialty: "Fade Master",
-    image: "https://i.imgur.com/ABC456.png",
+    image: photo2,
   },
   {
     name: "Rahul",
     specialty: "Hair Designer",
-    image: "https://i.imgur.com/DEF789.png",
+    image: photo3,
   },
   // Add more barbers as needed
 ];
@@ -29,7 +32,7 @@ const BarberCategory = () => {
             <img
               src={barber.image}
               alt={barber.name}
-              className="w-24 h-24 rounded-full mx-auto shadow-lg hover:scale-105 transition-transform duration-300"
+              className="w-24 h-24 rounded-full mx-auto shadow-lg hover:scale-105 transition-transform duration-300 object-cover"
             />
             <h3 className="mt-2 font-semibold">{barber.name}</h3>
             <p className="text-sm text-gray-500">{barber.specialty}</p>
