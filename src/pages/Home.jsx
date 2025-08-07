@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Hero ,Hero2, Footer ,Services , TopSalon ,UnequalSizeGallery ,
-  CategorySection, GetInTouch , ServiceMenu, SalonTypes, NewToFresh, FAQSection } from '../index.js';
+import { Hero ,UnequalSizeGallery ,
+  CategorySection, ServiceMenu, NewToFresh, FAQSection } from '../index.js';
 
 const Home = () => {
   return (

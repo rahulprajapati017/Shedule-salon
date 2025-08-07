@@ -1,8 +1,9 @@
 import React from 'react'
-import {Reviews,Teams, SalonServices,HoursAndInfo,MapLocation} from '../index.js'
+import {Reviews,Teams, SalonServices,HoursAndInfo,MapLocation,About} from '../index.js'
 function Salon() {
   return (
-    <div>
+    <div className='pt-30'>
+      <About />
       <SalonServices />
         <Teams />
         <MapLocation />

@@ -1,46 +1,59 @@
-import React from 'react';
-import photo1 from '../assets/pictureGallery/photo1.jpg';
-import photo2 from '../assets/pictureGallery/photo2.jpg';
-import photo3 from '../assets/pictureGallery/photo3.jpg';
+import React, { useEffect, useState } from 'react';
+import { view } from '../data/allapi';
 
-const barbers = [
-  {
-    name: "Ravi",
-    specialty: "Beard Expert",
-    image: photo1,
-  },
-  {
-    name: "Amit",
-    specialty: "Fade Master",
-    image: photo2,
-  },
-  {
-    name: "Rahul",
-    specialty: "Hair Designer",
-    image: photo3,
-  },
-  // Add more barbers as needed
-];
+const CategorySection = () => {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const BarberCategory = () => {
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(view.GET_ALL_PROMOS); // 🔁 Use your real API endpoint
+        const result = await res.json();
+
+        if (result.success && Array.isArray(result.data)) {
+          setCategories(result.data);
+        } else {
+          console.error("Unexpected response format:", result);
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-10">Loading categories...</div>;
+  }
+
   return (
-    <section className="py-8 px-4">
-      <h2 className="text-2xl font-bold mb-4">Meet Our Barbers</h2>
-      <div className="flex gap-6 overflow-x-auto no-scrollbar">
-        {barbers.map((barber, index) => (
-          <div key={index} className="min-w-[150px] text-center">
-            <img
-              src={barber.image}
-              alt={barber.name}
-              className="w-24 h-24 rounded-full mx-auto shadow-lg hover:scale-105 transition-transform duration-300 object-cover"
-            />
-            <h3 className="mt-2 font-semibold">{barber.name}</h3>
-            <p className="text-sm text-gray-500">{barber.specialty}</p>
+    <section className="grid md:grid-cols-2 gap-6 px-6 py-12 bg-gray-100">
+      {categories.map((cat, idx) => (
+        <div
+          key={cat._id || idx}
+          className="group relative h-[450px] flex items-center justify-center text-white rounded-lg shadow-lg overflow-hidden"
+        >
+          <img
+            src={cat.background?.url} // ✅ Use Cloudinary image URL
+            alt={cat.title}
+            className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+          />
+
+          <div className="relative z-10 text-center p-6 max-w-md bg-black/40 backdrop-blur-sm rounded-md">
+            <h2 className="text-3xl font-bold mb-4">{cat.title}</h2>
+            <p className="text-sm mb-6">{cat.description}</p>
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-black px-5 py-2 rounded-md font-semibold transition duration-300">
+              Read More
+            </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </section>
   );
 };
 
-export default BarberCategory;
+export default CategorySection;

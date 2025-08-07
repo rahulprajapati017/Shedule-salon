@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Plus, Minus } from "lucide-react";
-
-const faqs = [
-  "What makes Fresha the leading platform for businesses in beauty and wellness?",
-  "How does Fresha help my business grow?",
-  "Are there any hidden costs?",
-  "Is there a minimum commitment or contract?",
-  "Does Fresha support businesses of all sizes?",
-  "What types of businesses can use Fresha?",
-  "How can Fresha help reduce no-shows?",
-  "Can I migrate my data from my previous system to Fresha?",
-];
+import { view } from "../data/allapi"; // Ensure this points to your API routes
 
 const FAQSection = () => {
+  const [faqs, setFaqs] = useState([]);
   const [openIndex, setOpenIndex] = useState(null);
+
+  // Fetch FAQs from API
+  useEffect(() => {
+    const fetchFAQs = async () => {
+      try {
+        const response = await fetch(view.GET_ALL_FAQ); // Replace with correct API endpoint
+        const result = await response.json();
+
+        if (result.success && Array.isArray(result.data)) {
+          const activeFaqs = result.data.filter((faq) => faq.isActive);
+          setFaqs(activeFaqs);
+        }
+      } catch (error) {
+        console.error("Failed to fetch FAQs:", error);
+      }
+    };
+
+    fetchFAQs();
+  }, []);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -25,31 +35,22 @@ const FAQSection = () => {
         Frequently asked questions
       </h2>
       <div className="space-y-4">
-        {faqs.map((question, index) => (
-          <div
-            key={index}
-            className="border-b border-gray-300 pb-4"
-          >
+        {faqs.map((faq, index) => (
+          <div key={faq._id} className="border-b border-gray-300 pb-4">
             <button
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center w-full text-left"
             >
               <span className="text-lg font-medium text-gray-900">
-                {question}
+                {faq.question}
               </span>
               <span className="text-gray-700">
-                {openIndex === index ? (
-                  <Minus size={20} />
-                ) : (
-                  <Plus size={20} />
-                )}
+                {openIndex === index ? <Minus size={20} /> : <Plus size={20} />}
               </span>
             </button>
             {openIndex === index && (
               <div className="mt-2 text-gray-600 text-sm transition-all duration-300">
-                {/* You can customize or dynamically insert answers here */}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                facilisis nisl sit amet lacus gravida facilisis.
+                {faq.answer}
               </div>
             )}
           </div>
