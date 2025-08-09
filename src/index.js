@@ -22,6 +22,14 @@ export { default as MapLocation} from "./components/salon/Location.jsx"
 
 export { default as LoginPage} from "./components/auth/LoginPage.jsx"
 export { default as SignUpPage} from "./components/auth/signUpPage.jsx"
+export { default as ForgotPassword} from "./components/auth/forgotPassword.jsx"
+export { default as OTPverificaiton} from "./components/auth/OTPverificaiton.jsx"
+export { default as ResetPassword} from "./components/auth/ResetPassword.jsx"
 export { default as About} from "./components/salon/About.jsx"
+
+// export { default as Filters} from "./components/Salon-list/filers.jsx"
+// export { default as SortBar} from "./components/Salon-list/SortBar.jsx"
+// export { default as SalonCard} from "./components/Salon-list/SalonCard.jsx"
+
 
 

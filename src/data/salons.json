@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Looks Salon",
+    "address": "Hazratganj, Lucknow",
+    "rating": 4.5,
+    "reviews": 1250,
+    "price": 499,
+    "categories": ["Unisex", "Men", "Women"],
+    "services": ["Haircut", "Coloring", "Facial", "Manicure"],
+    "tags": ["Premium Products", "AC Available"],
+    "image": "https://picsum.photos/400/270?random=11"
+  },
+  {
+    "id": 2,
+    "name": "Geetanjali Studio",
+    "address": "Gomti Nagar, Lucknow",
+    "rating": 4.8,
+    "reviews": 2100,
+    "price": 799,
+    "categories": ["Women", "Unisex"],
+    "services": ["Haircut", "Coloring", "Spa", "Pedicure"],
+    "tags": ["Home Service", "Stylist Choice"],
+    "image": "https://picsum.photos/400/270?random=12"
+  }
+]

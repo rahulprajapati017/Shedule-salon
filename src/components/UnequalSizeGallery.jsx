@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BASE_URL, view } from '../data/allapi';
+// import { BASE_URL, view } from '../data/allapi';
 
 const UnequalSizeGallery = () => {
   const [columnCount, setColumnCount] = useState(4);
@@ -41,6 +42,7 @@ const UnequalSizeGallery = () => {
     };
 
     fetchGallerydata();
+    fetchGallerydata();
     updateColumnCount();
     window.addEventListener('resize', updateColumnCount);
     return () => window.removeEventListener('resize', updateColumnCount);
@@ -67,6 +69,7 @@ const UnequalSizeGallery = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">Masonry Gallery</h1>
           <p className="text-gray-600">Images from API in a responsive masonry layout</p>
+          <p className="text-gray-600">Images from API in a responsive masonry layout</p>
         </div>
 
         {/* Masonry Grid */}
@@ -83,7 +86,7 @@ const UnequalSizeGallery = () => {
                   key={image.id}
                   className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
                   style={{ height: `${image.height}px` }}
-                  onMouseEnter={() => setIsHovering(true)}
+                
                   onMouseLeave={() => setIsHovering(false)}
                 >
                   <img
@@ -93,7 +96,8 @@ const UnequalSizeGallery = () => {
                     loading="lazy"
                   />
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-opacity-0 group-hover:bg-black group-hover:bg-opacity-20 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
                 </div>
               ))}
             </motion.div>
