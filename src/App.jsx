@@ -7,6 +7,7 @@ import { LoginPage, SignUpPage, ForgotPassword,OTPverificaiton,ResetPassword} fr
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from './components/Store/reducers/Authreducer.jsx';
+import Forgotpasswordotpverification from './components/auth/forgotpasswordotpverification.jsx'
 // import { fetchUser } from './components/Store/reducers/Authreducer.jsx'
 
 
@@ -28,10 +29,10 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
+      <Route path='/forgototpverification' element={<Forgotpasswordotpverification/>}/>
       <Route path="/otpVerification" element={<OTPverificaiton />} />
       <Route path="/ResetPassword" element={<ResetPassword />} />
       </Routes>
-      
     </div>
   )
 }

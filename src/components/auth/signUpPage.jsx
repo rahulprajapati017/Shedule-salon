@@ -1,14 +1,17 @@
 // src/components/SignUpPage.jsx
 
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { view } from '../../data/allapi';
 
 const SignUpPage = ({ onSwitchToLogin }) => {
+  const navigate=useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
+    accountType:"User",
   });
   const [error, setError] = useState('');
 
@@ -20,17 +23,43 @@ const SignUpPage = ({ onSwitchToLogin }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async  (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
     setError('');
-    // In a real app, you would make an API call here to register the user
+    try {
+      let response=await fetch(view.USER_SIGNUP,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(formData)
+      })
+      let res=await response.json()
+    
+      if (response.ok) {
+
+  navigate("/otpVerification",{
+    state:{
+      email:formData.email
+    }
+  });
+}
+
+    
+      
+      
+    } catch (error) {
+      console.log("Error in signup",error)
+      
+    }
+   
     console.log("Creating account with:", formData);
-    alert("Account created successfully! Please log in.");
-    onSwitchToLogin(); // Switch to login page on successful signup
+   
+ 
   };
 
   return (

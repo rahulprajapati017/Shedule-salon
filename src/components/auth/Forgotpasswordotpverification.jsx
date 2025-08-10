@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { view } from '../../data/allapi';
 
-const OtpVerification = () => {
+const Forgotpasswordotpverification = () => {
   const location = useLocation();
   const { email } = location.state || {};
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const OtpVerification = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  // Redirect if email is missing
+  // Redirect user if email is missing
   useEffect(() => {
     if (!email) {
       navigate("/forgotPassword");
@@ -33,9 +33,15 @@ const OtpVerification = () => {
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Auto-focus next input
+    // Auto-focus next field if value is entered
     if (value && index < 3) {
       document.getElementById(`otp-${index + 1}`)?.focus();
+    }
+  };
+
+  const handleKeyDown = (index, e) => {
+    if (e.key === "Backspace" && otp[index] === "" && index > 0) {
+      document.getElementById(`otp-${index - 1}`)?.focus();
     }
   };
 
@@ -49,7 +55,7 @@ const OtpVerification = () => {
     }
 
     try {
-      const response = await fetch(view.USER_OTP_VERIFICATION, {
+      const response = await fetch(view.USER_FORGOT_PASSWORD_VERIFICATION, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp: finalOtp })
@@ -60,7 +66,7 @@ const OtpVerification = () => {
       if (response.ok) {
         setSuccess(true);
         setError('');
-        navigate("/login");
+        navigate("/ResetPassword", { state: { email } });
       } else {
         setSuccess(false);
         setError(data.message || "Invalid OTP");
@@ -116,6 +122,7 @@ const OtpVerification = () => {
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(index, e)}
                 className="w-12 h-12 text-center text-xl border border-gray-300 rounded focus:outline-pink-400"
                 required
               />
@@ -150,4 +157,4 @@ const OtpVerification = () => {
   );
 };
 
-export default OtpVerification;
+export default Forgotpasswordotpverification;

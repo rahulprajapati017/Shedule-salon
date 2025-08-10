@@ -9,8 +9,14 @@ export const view={
     GET_ALL_FAQ:BASE_URL+"/admin/getallfaq",
     GET_INFO:BASE_URL+"/admin/getinfo",
     GET_USER_PROFILE:BASE_URL+"/user/getuserprofile",
-    USER_REGISTER:BASE_URL+"",
-    USER_LOGIN:BASE_URL+"/auth/login"
+    USER_LOGIN:BASE_URL+"/auth/login",
+    
+    USER_SIGNUP:BASE_URL+"/auth/signup",
+    USER_OTP_VERIFICATION:BASE_URL+"/auth/verifyotp",
+    USER_RESEND_OTP:BASE_URL+"/auth/resendotp",
+    USER_FORGOT_PASSWORD:BASE_URL+"/auth/forgotpassword",USER_FORGOT_PASSWORD_VERIFICATION:BASE_URL+"/auth/verifyforgotpasswordotp", 
+    USER_RESET_PASSWORD:BASE_URL+"/auth/resetpassword"
 
+    //The next task is to impliment saloons page apis
 
 }

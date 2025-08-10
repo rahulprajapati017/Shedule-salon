@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { view } from '../../data/allapi'; // Make sure this has your RESET_PASSWORD endpoint
 
 const ResetPassword = () => {
+  const location=useLocation()
+  const {email}=location.state || {}
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
-  const handleReset = (e) => {
+  const handleReset = async (e) => {
     e.preventDefault();
 
     if (password.length < 6) {
@@ -20,12 +23,27 @@ const ResetPassword = () => {
       return;
     }
 
-    console.log("Password reset to:", password);
+    try {
+      const response = await fetch(view.USER_RESET_PASSWORD, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email, password, confirmPassword })
+      });
 
-    // TODO: Send API request to reset password
+      const data = await response.json();
 
-    alert("Password reset successfully ✅");
-    navigate("/login");
+      if (response.ok) {
+        alert("Password reset successfully ✅");
+        navigate("/login");
+      } else {
+        alert(data.message || "Failed to reset password");
+      }
+    } catch (error) {
+      console.error("Reset password error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
