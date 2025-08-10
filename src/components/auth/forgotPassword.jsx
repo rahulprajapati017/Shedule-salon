@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -23,12 +23,12 @@ const ForgotPassword = () => {
           </div>
 
           {/* Link styled as a button */}
-          <Link
+          <NavLink
             to="/otpVerification"
             className="block text-center w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded"
           >
             Send Reset Link
-          </Link>
+          </NavLink>
         </form>
 
         <p className="mt-4 text-sm text-center">

@@ -2,8 +2,8 @@ import { Star, MapPin, DollarSign } from "lucide-react";
 
 export default function SalonCard() {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div className="w-auto mb-4">
+      <div className="bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
         <div className="flex flex-col md:flex-row">
           {/* Left side - Image */}
           <div className="md:w-1/2">

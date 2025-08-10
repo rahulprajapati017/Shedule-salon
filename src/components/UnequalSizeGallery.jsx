@@ -69,7 +69,6 @@ const UnequalSizeGallery = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">Masonry Gallery</h1>
           <p className="text-gray-600">Images from API in a responsive masonry layout</p>
-          <p className="text-gray-600">Images from API in a responsive masonry layout</p>
         </div>
 
         {/* Masonry Grid */}

@@ -40,19 +40,19 @@ export default function SalonListing() {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
-      <header className="bg-white shadow-sm sticky top-0 z-40">
+      {/* <header className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex items-center gap-4 p-4">
           <input
             type="text"
             placeholder="Search for a salon or service" // updated placeholder
             className="flex-1 input input-bordered w-full max-w-xl"
           />
-          {/* date/time pickers for appointments omitted for brevity */}
+          {/* date/time pickers for appointments omitted for brevity 
         </div>
-      </header>
+      </header> */}
 
-      <main className="max-w-7xl mx-auto flex">
-        <aside className="w-72 shrink-0 hidden lg:block border-r bg-white">
+      <main className="w-auto mx-auto flex">
+        <aside className="w-72 shrink-0 hidden lg:block bg-white">
           <Filters value={filters} onChange={setFilters} />
         </aside>
 

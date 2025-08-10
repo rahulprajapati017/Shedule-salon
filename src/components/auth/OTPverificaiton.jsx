@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 const OtpVerification = () => {
   const [otp, setOtp] = useState(['', '', '', '']);
@@ -31,14 +31,14 @@ const OtpVerification = () => {
     const finalOtp = otp.join('');
     console.log("Entered OTP:", finalOtp);
 
-    if (finalOtp.length !== 4) {
+    if (finalOtp.length !== 4 || finalOtp.includes('')) {
       alert("Please enter all 4 digits of the OTP");
       return;
     }
 
     // Here, you would verify OTP using API
     alert("OTP Verified Successfully ✅");
-    navigate("/reset-password"); // Optional step after verifying
+    navigate("/ResetPassword"); // Navigate to reset password page
   };
 
   const handleResend = () => {
@@ -63,22 +63,21 @@ const OtpVerification = () => {
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 className="w-12 h-12 text-center text-xl border border-gray-300 rounded focus:outline-pink-400"
+                required
               />
             ))}
           </div>
-
           <NavLink
             to="/ResetPassword"
-            className="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded"
-            
           >
+            <button
+              type="submit"
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
+              disabled={otp.join('').length !== 4 || otp.includes('')}
+            >
             Verify OTP
-
-            </NavLink>  
-          <button
-            type="submit"
-          >
           </button>
+            </NavLink>
         </form>
 
         {timer > 0 ? (

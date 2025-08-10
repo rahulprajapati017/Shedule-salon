@@ -24,25 +24,7 @@ const OPTIONS = [
     label: 'Price: High to Low', 
     icon: DollarSign,
     description: 'Premium first'
-  },
-  { 
-    id: 'DISTANCE', 
-    label: 'Nearest', 
-    icon: MapPin,
-    description: 'Closest to you'
-  },
-  { 
-    id: 'NEWEST', 
-    label: 'Newest', 
-    icon: Clock,
-    description: 'Recently added'
-  },
-  { 
-    id: 'FEATURED', 
-    label: 'Featured', 
-    icon: Award,
-    description: 'Premium partners'
-  },
+  }
 ];
 
 export default function SortBar({ value, onChange }) {
